@@ -49,10 +49,10 @@ Then visit: http://127.0.0.1:8000
 Folder Structure
 service-marketplace/
 │
-├── config/           # Project settings
-├── services/         # Main app for services and requests
-├── templates/        # HTML templates (Bootstrap-based)
-├── static/           # Static files (CSS, JS)
-├── db.sqlite3        # Default DB (can be removed)
-└── manage.py         # Django management script
+-├── config/           # Project settings
+-├── services/         # Main app for services and requests
+-├── templates/        # HTML templates (Bootstrap-based)
+-├── static/           # Static files (CSS, JS)
+-├── db.sqlite3        # Default DB (can be removed)
+-└── manage.py         # Django management script
 
