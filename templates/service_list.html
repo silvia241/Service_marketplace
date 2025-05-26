@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}All Services{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">Available Services</h2>
+
+  <div class="row">
+    {% for service in services %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <a href="{% url 'service_detail' service.id %}"></a><h5 class="card-title">{{ service.title }}</h5></a>
+            <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ service.price }}</p>
+            <a href="{% url 'request_service' service.id %}" class="btn btn-outline-primary btn-sm mt-2">Request Service</a>
+
+            <p class="text-muted small">By {{ service.provider.username }} | {{ service.created_at|date:"M d, Y" }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No services found.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ service.title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">{{ service.title }}</h3>
+    <p class="card-text">{{ service.description|linebreaks }}</p>
+    <p><strong>Category:</strong> {{ service.category }}</p>
+    <p><strong>Posted By:</strong> {{ service.provider.username }}</p>
+    <p><strong>Created At:</strong> {{ service.created_at|date:"M d, Y H:i" }}</p>
+
+    {% if request.user.is_authenticated %}
+      {% if request.user != service.provider %}
+        <a href="{% url 'request_service' service.id %}" class="btn btn-primary">Request This Service</a>
+      {% else %}
+        <p class="text-muted">You posted this service.</p>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-warning">Login to Request</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

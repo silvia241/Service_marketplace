@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">My Dashboard</h2>
+
+  <h4>My Posted Services</h4>
+  {% if my_services %}
+    <ul class="list-group mb-4">
+      {% for s in my_services %}
+        <li class="list-group-item">{{ s.title }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No services posted yet.</p>
+  {% endif %}
+
+  <h4>My Requested Services</h4>
+  {% if my_requests %}
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Service</th>
+          <th>Provider</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for req in my_requests %}
+          <tr>
+            <td>{{ req.service.title }}</td>
+            <td>{{ req.service.provider.username }}</td>
+            <td>{{ req.message|linebreaks }}</td>
+            <td>{{ req.created_at|date:"M d, Y H:i" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No service requests made yet.</p>
+  {% endif %}
+{% endblock %}
