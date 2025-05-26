@@ -1,0 +1,7 @@
+# Mark specific folders as documentation or vendor so GitHub ignores them in language stats
+static/* linguist-vendored
+*.js linguist-vendored
+*.css linguist-vendored
+
+# Mark Python as the main language
+*.py linguist-detectable=true
